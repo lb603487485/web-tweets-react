@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './style/normalize.css';
+// import 'https://fonts.googleapis.com/css?family=Roboto';
+// import './style/fontawesome-all.css';
+import './style/columns.css';
+import './style/main.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
