@@ -4,9 +4,9 @@ import Tweet from './Tweet';
 class TweetList extends React.Component {
     render() {
         return (
-            <div id="tweet-list">
-                <Tweet />
-                <Tweet />
+            <div >
+                {console.log(this.props.tweets)}
+                {this.props.tweets.map(tweet => <Tweet value={tweet} key={tweet._id}/>)}
             </div>
         );
     }

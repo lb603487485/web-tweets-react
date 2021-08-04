@@ -1,12 +1,12 @@
 import React from 'react';
-import Nav from './Nav';
+import Nav from './others/Nav';
 import {
     Link
 } from "react-router-dom";
 
 import uploadImg from '../images/upload.png';
 import sampleAvatarImg from '../images/sample-avatar.png';
-import TweetList from './TweetList';
+import TweetList from './tweets/TweetList';
 
 class ProfileEditPage extends React.Component {
     render() {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Nav from './Nav';
-import SignUpForm from './SignUpForm';
-import TweetList from './TweetList';
+import Nav from './others/Nav';
+import SignUpForm from './forms/SignUpForm';
+import TweetList from './tweets/TweetList';
 
 class SignupPage extends React.Component {
     render() {
@@ -22,7 +22,6 @@ class SignupPage extends React.Component {
             </div>
         );
     }
-
 }
 
 export default SignupPage;

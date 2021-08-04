@@ -3,8 +3,8 @@ import {
     Link
   } from "react-router-dom";
 
-import logoImg from '../images/webdxd.png';
-import sampleAvatarImg from '../images/sample-avatar.png';
+import logoImg from '../../images/webdxd.png';
+import sampleAvatarImg from '../../images/sample-avatar.png';
 
 
 class Nav extends React.Component {

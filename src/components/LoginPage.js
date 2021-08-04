@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import LoginForm from './LoginForm';
-import Nav from './Nav';
-import TweetList from './TweetList';
+import LoginForm from './forms/LoginForm';
+import Nav from './others/Nav';
+import TweetList from './tweets/TweetList';
 
 class LoginPage extends React.Component {
     render() {
