@@ -22,7 +22,8 @@ const App = (props) => {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/" exact>
-            {props.user.token ? <Home /> : <Redirect to="/login" />}
+            {/* {props.user.token ? <Home /> : <Redirect to="/login" />} */}
+            <Home />
           </Route>
           <Route path="/login">
             {/* <Login /> */}

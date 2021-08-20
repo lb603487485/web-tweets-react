@@ -314,9 +314,20 @@ button:disabled {
 }
 
 .uploadcare--widget__button_type_open:before {
-    content: "\f302"; }
+    content: "\f302"; 
+    text-indent: 0;
+    float: left;
+}
 
 .uploadcare--widget__button_type_open {
+    /* display: none; */
+    outline: none; 
+
+    opacity: .8;
+    transition: opacity .3s ease;
+    text-align: center;
+    transition: background-color .3s ease, border-color .3s ease;
+
     border: none;
     background: transparent;
     color: #29C9DE;
@@ -325,17 +336,22 @@ button:disabled {
 
     font-family: 'Font Awesome 5 Free';
     font-weight: 400;
-
+    text-indent: -9999px;
 }
-@font-face {
-    font-family: 'Font Awesome 5 Free';
-    font-style: normal;
-    font-weight: 900;
-    src: url("../webfonts/fa-solid-900.eot");
-    src: url("../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.woff") format("woff"), url("../webfonts/fa-solid-900.ttf") format("truetype"), url("../webfonts/fa-solid-900.svg#fontawesome") format("svg"); }
 
 .uploadcare--widget__button_type_open:hover {
+    background: transparent;
+    color: #29C9DE;
     opacity: 1;
+
+    font-family: 'Font Awesome 5 Free';
+}
+
+.uploadcare--widget__button_type_open:focus {
+    outline: none;
+    background: transparent;
+    color: #29C9DE;
+    font-family: 'Font Awesome 5 Free';
 }
 
 .actionBox {
