@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class ProfileButtons extends React.Component {
     render() {
         return (
             <div className="profile-content">
                 <Link className="btn-border space-top" to='/profile-edit'>Edit profile</Link>
-                <Link className="btn-border space-top" to='/login'>Log out</Link>
+                <button className="btn-border space-top" onClick={this.props.logout}>Log out</button>
             </div>
         );
     }
 }
 
-export default ProfileButtons;
+const mapDispath = ({user: { cleanUserState }}) => ({
+    logout: () => cleanUserState(),
+});
+
+export default connect(null, mapDispath)(ProfileButtons);

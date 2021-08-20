@@ -1,7 +1,7 @@
 import React from 'react';
-import {
-    Link
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import { connect } from 'react-redux';
 
 import logoImg from '../../images/webdxd.png';
 import sampleAvatarImg from '../../images/sample-avatar.png';
@@ -17,7 +17,8 @@ class Nav extends React.Component {
                     <li><Link to='/'>Home</Link></li>
                 </ul>
                 <div>
-                    <Link to="/profile"><img className="avatar-sm" src={sampleAvatarImg} alt="avatar" /></Link>
+                    <Link to="/profile"><img className="avatar-sm" 
+                    src={this.props.user.profile.avatarUrl ? this.props.user.profile.avatarUrl : sampleAvatarImg} alt="avatar" /></Link>
                 </div> 
             </div>
         </nav>
@@ -26,4 +27,8 @@ class Nav extends React.Component {
 
 }
 
-export default Nav;
+const mapState = state => ({
+    user: state.user
+});
+
+export default connect(mapState, null)(Nav);

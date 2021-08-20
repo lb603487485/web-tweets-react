@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import {BASE_URL} from '../../config';
  
 class LoginForm extends React.Component {
 
@@ -16,11 +14,7 @@ class LoginForm extends React.Component {
     }
 
     handleLoginRequest = () => {
-        // let that = this;
-        axios.post(`${BASE_URL}/auth/login`, this.state)
-            .then((res) => {
-                console.log(res);
-            })
+        this.props.logInRequestAsync(this.state);
     }
 
     render() {

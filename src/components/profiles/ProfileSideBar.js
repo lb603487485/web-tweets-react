@@ -1,22 +1,25 @@
 import React from 'react';
 
 import { Route } from 'react-router-dom';
-import avatarImg from '../../images/avatar.jpg';
+import { connect } from 'react-redux';
 import ProfileButtons from './ProfileButtons';
- 
 class ProfileSideBar extends React.Component {
     render() {
         return (
-            <div className="profile-content">
-                <img className="avatar" src={avatarImg} alt="avatar" />
-                <h3>Yan Hong</h3>
-                <h5>@honlyan</h5>
-                <h4><i className="fas fa-map-marker-alt"></i> Vancouver</h4>
-                <p className="center">Director of EduHacks * Digital Ocean Vancouver Meetup Co-organizer * CEO of HackHub * Founder of Inverse Technology Inc.</p>
+            <div className="profile">
+                <img className="avatar" src={this.props.user.profile.avatarUrl} alt="avatar" />
+                <h3>{this.props.user.profile.name}</h3>
+                <h5>@{this.props.user.profile.username}</h5>
+                <h4><i className="fas fa-map-marker-alt"></i> {this.props.user.profile.location}</h4>
+                <p className="center">{this.props.user.profile.bio}</p>
                 <Route path='/profile' render={() => <ProfileButtons />} />
             </div>
         );
     }
 }
 
-export default ProfileSideBar;
+const mapState = state => ({
+    user: state.user,
+})
+
+export default connect(mapState, null)(ProfileSideBar);

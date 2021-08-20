@@ -1,21 +1,20 @@
 import React from 'react';
 import Nav from './others/Nav';
 
-import ProfileEditSideBar from './profiles/ProfileEditSideBar';
-import TweetList from './tweets/TweetList';
+import ProfileSideBar from './profiles/ProfileSideBar';
 
-class ProfileEditPage extends React.Component {
+class TweetEditPage extends React.Component {
     render() {
         return (
             <div>
                 <Nav />
                 <div className="container">
                     <div className="col-2of5 bg-white profile">
-                        <ProfileEditSideBar />
+                        <ProfileSideBar />
                     </div>
 
                     <div className="col-3of5 bg-white">
-                        <TweetList />
+                        <h2>Comming Soon...</h2>
                     </div>
                 </div>
             </div>
@@ -24,4 +23,4 @@ class ProfileEditPage extends React.Component {
 
 }
 
-export default ProfileEditPage;
+export default TweetEditPage;

@@ -8,10 +8,22 @@ import './style/main.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// import Redux Rematch
+import { init } from '@rematch/core';
+import { Provider } from 'react-redux';
+import * as models from './store/models';
+
+const store = init({
+  models
+})
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
+  
   document.getElementById('root')
 );
 
