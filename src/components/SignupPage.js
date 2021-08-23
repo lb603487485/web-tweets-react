@@ -14,7 +14,7 @@ class SignupPage extends React.Component {
                     <div className="col-2of5 bg-white profile user-auth">
                         <h3>Log in to Web Tweet</h3>
                         <SignUpForm signUpRequest={this.props.signUpRequest}/>
-                        <h6 class="">Have an account? <Link to="/login">Log in</Link></h6>  
+                        <h6 className="">Have an account? <Link to="/login">Log in</Link></h6>  
                     </div>
                     <div className="col-3of5 bg-white">
                         <TweetList />

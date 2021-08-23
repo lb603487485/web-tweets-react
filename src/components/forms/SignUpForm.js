@@ -24,13 +24,7 @@ class SignUpForm extends React.Component {
             try {
                 const success = await this.props.signUpRequest({ username: this.state.username, password: this.state.password,});
                 if (success) {
-                    this.setState({
-                        username: '',
-                        password: '',
-                        comfirmPassword: '',
-                        different: false,
-                        success: true,
-                    });
+            
                 } else { this.setState({ success: false });}
             } catch (err) { console.log(err); }
             
@@ -40,12 +34,12 @@ class SignUpForm extends React.Component {
     render() {
         return (
             <form id="signup-form">
-                <input class="input-auth" type="text" placeholder="Username" name="username" value={this.state.username} onChange={this.handleFormUpdate}/>
-                <input class="input-auth" type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleFormUpdate}/>
-                <input class="input-auth" type="password" placeholder="Repeat password" name="comfirmPassword" value={this.state.comfirmPassword} onChange={this.handleFormUpdate}/>
+                <input className="input-auth" type="text" placeholder="Username" name="username" value={this.state.username} onChange={this.handleFormUpdate}/>
+                <input className="input-auth" type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleFormUpdate}/>
+                <input className="input-auth" type="password" placeholder="Repeat password" name="comfirmPassword" value={this.state.comfirmPassword} onChange={this.handleFormUpdate}/>
                 {this.state.different && <p className="signup-fail input-auth"> Passwords do not match.</p>}
                 {!this.state.success && <p className="signup-fail">The given username is already registered</p>}
-                <button class="btn-primary" type="button" id="signup-btn" onClick={this.handleSignUpBtn}
+                <button className="btn-primary" type="button" id="signup-btn" onClick={this.handleSignUpBtn}
                 disabled={this.state.username && this.state.password ? '' : 'disabled'}>Sign up</button>
             </form>
             

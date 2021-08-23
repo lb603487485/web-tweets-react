@@ -18,11 +18,6 @@ class LoginForm extends React.Component {
     handleLoginRequest = async () => {
         const success = await this.props.logInRequestAsync(this.state);
         console.log(success);
-        this.setState({
-            ...this.state,
-            logined: true,
-            success: success,
-        });
     }
 
     render() {
@@ -30,7 +25,7 @@ class LoginForm extends React.Component {
             return (<div>Good</div>);
         } else {
             return (
-                <form>
+                <form id="login-form">
                     <input className="input-auth" type="text" placeholder="Username" name="username" onChange={this.handleFormUpdate} required/>
                     <input className="input-auth" type="password" placeholder="Password" name="password" onChange={this.handleFormUpdate} required/>
                     {this.state.logined && !this.state.success && <p className='input-auth login-fail'>Username or Password is not correct.</p>}
