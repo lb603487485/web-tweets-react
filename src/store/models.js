@@ -42,24 +42,40 @@ const user = {
     },
 
     effects: (dispatch) => ({
+        handleAuthResponse (response, rootState) {
+            if (response.data.success){
+                this.updateProfile(response.data.profile);
+                this.updateToken(response.data.token);
+                return true;
+                // console.log(that.tweets);
+            } else {
+                console.log(response.data.error);
+                return false;
+            }
+        },
+
         async logInRequestAsync(payload, rootState) { // payload should be { username: String, password: String}
             // const that = dispatch;
             try {
                 const res = await axios.post(`${BASE_URL}/auth/login`, payload);
                 console.log(res);
-                if (res.data.success){
-                    this.updateProfile(res.data.profile);
-                    this.updateToken(res.data.token);
-                    return true;
-                    // console.log(that.tweets);
-                } else {
-                    console.log(res.data.error);
-                    return false;
-                }
+                return this.handleAuthResponse(res);
             } catch (err) {
                 console.log(err);
                 return false;
             }
+        },
+
+        async signUpRequest(payload, rootState) { // { username: String, password: String }
+            // console.log(payload);
+            try {
+                const res = await axios.post(`${BASE_URL}/auth/signup`, payload);
+                // console.log(res);
+                return this.handleAuthResponse(res);
+            } catch (err) {
+                console.log(err);
+                return false;
+            } 
         },
 
         async decrementAsync(payload, rootState) {
@@ -88,7 +104,7 @@ const user = {
                 return false;
             }
             // console.log('updating profile done');
-        }
+        },
         
     })
 

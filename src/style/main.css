@@ -380,7 +380,9 @@ button:disabled {
     border-radius: 10px;
 }
 
-.login-fail {
+.login-fail, .signup-fail{
+    margin: 0;
+    margin-bottom: 1rem;
     color: red;
 }
 

@@ -26,12 +26,8 @@ class LoginPage extends React.Component {
 
 }
 
-const mapState = state => ({
-    user: state.user,
-});
-
 const mapDispath = ({user: { logInRequestAsync }}) => ({
     logInRequestAsync: (data) => logInRequestAsync(data),
 });
 
-export default connect(mapState, mapDispath)(LoginPage);
+export default connect(null, mapDispath)(LoginPage);
