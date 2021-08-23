@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import TweetActions from './TweetActions';
+import TweetImages from './TweetImages';
  
 class Tweet extends React.Component {
     render() {
@@ -14,10 +15,9 @@ class Tweet extends React.Component {
                     <h5>{moment(this.props.value.createdAt).format('MMMM D, YYYY hh:mm A')}</h5>
                     {this.props.userId === this.props.value.author._id && <TweetActions tweetId={this.props.value._id}/> }
                 </div>
-                <p> {this.props.value.content}
-                    <br />
-                    <img src={this.props.value.imageUrl} alt="tweet" />
-                </p>
+                <p> {this.props.value.content}</p>
+                {(this.props.value.imageUrl || this.props.value.imageGroup) && 
+                <TweetImages imageUrl={this.props.value.imageUrl} imageGroup={this.props.value.imageGroup}/>}
             </div>
         );
     }

@@ -22,18 +22,23 @@ function PostBox (props) {
 
     const widgetApi = useRef();
 
-    const handleImagesUpload = (info) => {
-        console.log(info);
-        setMyState({
-            ...myState,
-            imageGroup: info.cdnUrl,
-        });
-    };
-
-    const handleClick = () => {
-        const dialog = widgetApi.current.openDialog();
-        console.log(dialog);
-        dialog.switchTab("url");
+    const handleImagesSelect = async (file) => {
+        console.log('file', file)
+        if (file) {
+            await file.promise().done((info) => {
+                console.log('info', info);
+                setMyState({
+                    ...myState,
+                    imageGroup: info.cdnUrl,
+                });
+            });
+        } else {
+            console.log('no file');
+            setMyState({
+                ...myState,
+                imageGroup: '',
+            });
+        }
     };
 
     const handlePost = () => {
@@ -42,7 +47,7 @@ function PostBox (props) {
             console.log('empty content');
         } else {
             console.log(myState);
-            // this.props.postTweetRequest(this.state);
+            props.postTweetRequest(myState);
             // clear set
             setMyState({
                 content: '',
@@ -60,8 +65,8 @@ function PostBox (props) {
                     <textarea className="input-tweet" placeholder="What's up?" name="content" onChange={handleBoxUpdate} value={myState.content}></textarea>
                 </div>
                 <div className="row tweet-actions">
-                    <button className="btn-clear" type="button"> <i className="far fa-images" onClick={handleClick}></i></button>
-                    <Widget publicKey={UPC_PUBLIC_KEY} ref={widgetApi} multiple multipleMax={9} imagesOnly clearable></Widget>
+                    <button className="btn-clear my-images-action" type="button"> <i className="far fa-images" onClick={() => {widgetApi.current.openDialog()}}></i></button>
+                    <Widget publicKey={UPC_PUBLIC_KEY} ref={widgetApi} value={myState.imageGroup} onFileSelect={handleImagesSelect} multiple multipleMax={9} crop="4:3" imagesOnly previewStep clearable></Widget>
                     <button className="btn-primary" type="button" name="post-btn" onClick={handlePost} disabled={myState.content ? '' : 'disabled'}>Post</button>
                 </div>
             </form>

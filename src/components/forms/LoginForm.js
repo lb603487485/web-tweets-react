@@ -5,6 +5,8 @@ class LoginForm extends React.Component {
     state = {
         username: '',
         password: '',
+        logined: false,
+        success: false,
     }
 
     handleFormUpdate = e => {
@@ -13,18 +15,30 @@ class LoginForm extends React.Component {
         });
     }
 
-    handleLoginRequest = () => {
-        this.props.logInRequestAsync(this.state);
+    handleLoginRequest = async () => {
+        const success = await this.props.logInRequestAsync(this.state);
+        console.log(success);
+        this.setState({
+            ...this.state,
+            logined: true,
+            success: success,
+        });
     }
 
     render() {
-        return (
-            <form id="login-form">
-                <input className="input-auth" type="text" placeholder="Username" name="username" onChange={this.handleFormUpdate}/>
-                <input className="input-auth" type="password" placeholder="Password" name="password" onChange={this.handleFormUpdate}/>
-                <button className="btn-primary" type="button" id="login-btn" onClick={this.handleLoginRequest}>Log in</button>
-            </form>
-        );
+        if (this.state.success) {
+            return (<div>Good</div>);
+        } else {
+            return (
+                <form>
+                    <input className="input-auth" type="text" placeholder="Username" name="username" onChange={this.handleFormUpdate} required/>
+                    <input className="input-auth" type="password" placeholder="Password" name="password" onChange={this.handleFormUpdate} required/>
+                    {this.state.logined && !this.state.success && <p className='input-auth login-fail'>Username or Password is not correct.</p>}
+                    <button className="btn-primary" type="button" id="login-btn" onClick={this.handleLoginRequest} 
+                    disabled={this.state.username && this.state.password ? '' : 'disabled'}>Log in</button>
+                </form>
+            );
+        }
     }
 }
 

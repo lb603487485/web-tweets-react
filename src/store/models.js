@@ -44,17 +44,22 @@ const user = {
     effects: (dispatch) => ({
         async logInRequestAsync(payload, rootState) { // payload should be { username: String, password: String}
             // const that = dispatch;
-            axios.post(`${BASE_URL}/auth/login`, payload)
-                    .then(res => {
-                        if (res.data.success){
-                            this.updateProfile(res.data.profile);
-                            this.updateToken(res.data.token);
-                            // console.log(that.tweets);
-                        } else {
-                            console.log(res.data.error);
-                        }
-                    });
-            console.log("login done");
+            try {
+                const res = await axios.post(`${BASE_URL}/auth/login`, payload);
+                console.log(res);
+                if (res.data.success){
+                    this.updateProfile(res.data.profile);
+                    this.updateToken(res.data.token);
+                    return true;
+                    // console.log(that.tweets);
+                } else {
+                    console.log(res.data.error);
+                    return false;
+                }
+            } catch (err) {
+                console.log(err);
+                return false;
+            }
         },
 
         async decrementAsync(payload, rootState) {
@@ -64,20 +69,25 @@ const user = {
 
         async updateProfileRequest(payload, rootState) { // { name: String, location: String, bio: String, avatarUrl: String }
             console.log(payload);
-            axios.put(`${BASE_URL}/profile`, payload, {
+            const res = await axios.put(`${BASE_URL}/profile`, payload, {
                 headers: {
                     Authorization: 'Bearer ' + rootState.user.token
                 }
-            }).then(res => { // { profile: Object, error: Object, success: Bool }
+            });
+            
+            try {// { profile: Object, error: Object, success: Bool }
                 if (res.data.success){
                     this.updateProfile(res.data.profile);
+                    return true;
                 } else {
                     console.log(res.data.error);
+                    return false;
                 }
-            }).catch(err => {
+            } catch (err) {
                 console.log(err);
-            });
-            console.log('updating profile done');
+                return false;
+            }
+            // console.log('updating profile done');
         }
         
     })
