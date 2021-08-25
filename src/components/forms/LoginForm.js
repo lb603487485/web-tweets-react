@@ -18,6 +18,13 @@ class LoginForm extends React.Component {
     handleLoginRequest = async () => {
         const success = await this.props.logInRequestAsync(this.state);
         console.log(success);
+        if (!success){
+            this.setState({
+                logined: true,
+                success: false,
+            });
+        }
+        
     }
 
     render() {

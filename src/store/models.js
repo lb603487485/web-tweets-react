@@ -58,7 +58,7 @@ const user = {
             // const that = dispatch;
             try {
                 const res = await axios.post(`${BASE_URL}/auth/login`, payload);
-                console.log(res);
+                // console.log(res);
                 return this.handleAuthResponse(res);
             } catch (err) {
                 console.log(err);
